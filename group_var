@@ -1,0 +1,8 @@
+user:
+     dev:
+            name: sourabh
+            group: group1
+     node2:
+            name: user2   
+            group: group2
+

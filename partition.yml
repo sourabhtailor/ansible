@@ -1,0 +1,54 @@
+---
+  - name: create a partition
+    hosts: all
+    tasks:
+      - name: create a 2gb partition
+        parted:
+              device: /dev/sdb
+              fs_type: ext4
+              part_end: '2GiB'
+              state: present
+              number: 1
+
+      - name: create 2nd partition
+        parted:
+          device: /dev/sdb
+          number: 2
+          fs_type: xfs
+          part_start: '2GiB'
+          part_end: '4GiB'
+          state: present
+
+      - name: create a directory
+        file:
+          path: /part/one
+          state: directory
+      - name: create 2nd directory
+        file:
+          path: /part/two
+          state: directory  
+
+      - name: make filesystem
+        filesystem:
+          dev: /dev/sdb1
+          fstype: ext4
+          state: present
+      - name: make 2nd filesystem
+        filesystem:      
+          dev: /dev/sdb2
+          fstype: xfs
+          state: present
+
+      - name: mount1
+        mount:
+          path: /part/one
+          src: /dev/sdb1
+          state: mounted
+          fstype: ext4  
+      - name: mount2
+        mount:
+          path: /part/two
+          src: /dev/sdb2
+          state: mounted
+          fstype: xfs
+

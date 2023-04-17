@@ -1,0 +1,9 @@
+---
+  - name: crate a directory
+    hosts: all
+    tasks:
+       - name: create directory grrassolution
+         file:
+             path: /grrassolution
+             state: directory
+             mode: '1707'

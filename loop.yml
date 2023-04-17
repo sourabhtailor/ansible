@@ -1,0 +1,17 @@
+---
+  - name: create user by loop
+    hosts: all
+    tasks:
+         - name: create users
+           user: 
+                name: "{{ item }}"  
+                state: presenit
+
+           loop:
+               - sourabh
+               - katherine
+               - tailor
+               - langford
+           register: output      
+         - debug: 
+                 var: output

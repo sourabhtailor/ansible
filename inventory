@@ -1,0 +1,9 @@
+[dev]
+node1
+
+[prod]
+node2   
+
+[localmachine]
+node1
+node2   

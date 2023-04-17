@@ -1,0 +1,10 @@
+---
+  - name: create partition
+    hosts: all
+    tasks:
+         - name: create new partition
+           parted:
+                  name: create partition 
+                  device: /dev/sde
+                  state: present
+           when: ansible_facts.devices.sde is defined         

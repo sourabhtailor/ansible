@@ -1,0 +1,28 @@
+---
+ - name: creating a user
+   hosts: all
+   tasks:
+         - name: creating user pinkcity
+           user:
+               name: pinki
+               state: present
+
+         - name: creating a group Administrator
+           group:
+               name: blacky
+               state: present
+
+         - name: creating directory /ansibleproject
+           file:
+               path: /ansibleee
+               state: directory
+               mode: '0770'
+               group: blacky
+
+ - name: software installation
+   hosts: prod
+   tasks:
+        - name: install httpd
+          dnf:
+              name: httpd
+              state: latest

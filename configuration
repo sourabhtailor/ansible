@@ -1,0 +1,4 @@
+<virtualhost *:80>
+servername 192.168.25.139
+documentroot /var/www/sourabh
+</virtualhost>

@@ -1,0 +1,8 @@
+---
+  - name: template testing
+    hosts: all
+    tasks:
+          - name: copy data
+            template:
+                src: facts.j2
+                dest: /facts

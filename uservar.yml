@@ -1,0 +1,16 @@
+---
+  - name: creating a user with a variable
+    hosts: all
+    tasks:
+      - name: create user
+        user:
+            name: "{{ my_user }}"
+            state: present
+      - name: install package
+        dnf:
+            name: "{{ my_pack }}"       
+            state: present
+      - name: create group
+        group:
+            name: "{{ my_group }}" 
+            state: present      

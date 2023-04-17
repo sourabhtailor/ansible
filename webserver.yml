@@ -1,0 +1,29 @@
+---
+ - name: configuring httpd webserver
+   hosts: all
+   tasks:
+        - name: install httpd
+          dnf:
+               name: httpd
+               state: present
+
+        - name: start and enable service httpd
+          service:
+              name: httpd
+              state: started
+              enabled: yes
+
+        - name: copy index.html
+          copy:
+              src: index.html
+              dest: /var/www/html
+
+ - name: allow port in firewall
+   hosts: localmachine
+   tasks:
+       - name: allow http port into firewalld
+         firewalld:
+              service: http
+              state: enabled 
+              permanent: yes
+              immediate: yes

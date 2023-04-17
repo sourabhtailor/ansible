@@ -1,0 +1,34 @@
+---
+  - name: creating virtual hosting
+    hosts: aws
+    tasks:
+        - name: install httpd
+          yum: 
+              name: httpd
+              state: present 
+        - name: start service  
+          service:
+              name: httpd
+              state: started
+              enabled: yes
+
+        - name: custom configuration file
+          copy:
+              src: /root/ansible/configuration/
+              dest: /etc/httpd/conf.d/sourabh.conf
+
+               
+        - name: make directory
+          file:
+               path: /var/www/sourabh
+               state: directory
+        - name: copy data in sourabh file
+          copy:
+               src: /root/ansible/template/
+               dest: /var/www/sourabh
+
+        - name: restart service
+          service:
+                  name: httpd
+                  state: restarted
+                    

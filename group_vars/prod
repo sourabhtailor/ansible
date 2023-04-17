@@ -1,0 +1,3 @@
+ansible_remote_user: root
+my_file: prod.txt
+web_pkg: httpd

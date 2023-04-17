@@ -1,0 +1,30 @@
+---
+  - name: repository
+    hosts: all
+    tasks:
+    - name: mount
+      file:
+        path: /iso
+        state: directory
+    - name: mount
+      mount:
+        path: /iso
+        src: /dev/sr0
+        state: mounted
+        opts: defaults
+        fstype: auto
+    - name: configure repository 
+      yum_repository:
+        name: appstream
+        description: appstream repo
+        baseurl: file:///iso/AppStream
+        enabled: 1
+        gpgcheck: 0
+    - name: repository
+      yum_repository:
+         name: baseos
+         description: baseos repo
+         baseurl: file:///iso/BaseOS
+         enabled: 1
+         gpgcheck: 0  
+        

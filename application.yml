@@ -1,0 +1,25 @@
+---
+ - name: practicing variables
+   hosts: all
+   vars_files:
+         ./applicatioon.yml
+   tasks:
+        - name: install httpd software
+          yum:
+              name: "{{ web_pkg }}"
+              state: latest
+          ignore_errors: yes
+        - name: creating user
+          user:
+              name: "{{ my_user }}"
+              state: present
+
+        - name: creating file
+          file:
+              path: "{{ my_file }}"
+              state: touch
+          notify: initiate  
+   handlers:    
+        - name: initiate
+          community.general.shutdown:
+                     

@@ -1,0 +1,11 @@
+---
+  - name: copy index file 
+    hosts: node2
+    tasks:
+      - name: copy index file
+        copy:
+              src: /root/ansible/index/
+              dest: /media
+              
+
+

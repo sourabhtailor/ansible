@@ -1,0 +1,12 @@
+---
+  - name: restart service
+    hosts: all
+    tasks:
+         - name: restart service
+           service:
+                  name: "{{ item }}"
+                  state: restarted
+
+           loop:
+                 - httpd
+                 - mariadb         

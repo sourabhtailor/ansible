@@ -1,0 +1,8 @@
+---
+  - name: copy key
+    hosts: all
+    tasks:
+      - authorized_key:
+            user: user1
+            key: "{{ lookup ('file','/home/user1/.ssh/id_rsa.pub')}}"
+            state: present  

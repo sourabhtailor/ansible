@@ -1,0 +1,17 @@
+---
+  - name: dedicated webserver
+    hosts: all
+    tasks: 
+        - name: webserver
+          yum:
+              name: httpd
+              state: present
+        - name: enable and start
+          service: 
+              name: httpd
+              enabled: yes  
+              state: started
+        - name: entry in index
+          lineinfile:
+                path: /var/www/html/index.html
+                line: <h1> webserver through ansible plabook by sourabh tailor </h1>         
